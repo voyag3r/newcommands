@@ -1,0 +1,58 @@
+AMI Formation 
+
+In Browser:
+Create instance in EC2
+
+In Terminal: 
+mkdir /data
+yum install httpd
+rpmquery httpd
+cd /var/www/html
+echo "This is my Laptop" > index.html
+ll
+cat index.html
+cd 
+systemctl start httpd
+systemctl status httpd
+curl http://localhost
+ip a s
+curl http:// ip of the same instance
+yum install vsftpd -y
+cd /data
+touch ashish.txt{1..10}
+ll
+
+In Browser:
+Instance 
+Action  
+Template and Images
+Images 
+create Image name
+
+
+Go to AMI
+Action 
+Copy AMI
+ami copy name -any 
+destination any region 
+copy ami
+
+
+
+
+Go to next region
+ami check image  
+ami through instance create select the image of other region
+cmd
+
+
+
+AMI Instance server me: 
+After creating instance from AMI
+when we connect our
+ssh -i "tokyo-key.pem" root@ec2-18-181-163-51.ap-northeast-1.compute.amazonaws.com
+change root to ec2-user
+ssh -i "tokyo-key.pem" ec2-user@ec2-18-181-163-51.ap-northeast-1.compute.amazonaws.com
+
+then check rpmquery httpd 
+httpd -v
