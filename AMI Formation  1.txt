@@ -56,3 +56,247 @@ ssh -i "tokyo-key.pem" ec2-user@ec2-18-181-163-51.ap-northeast-1.compute.amazona
 
 then check rpmquery httpd 
 httpd -v
+
+
+yum update all
+      sudo yum install automake fuse fuse-devel gcc-c++ git libcurl-devel libxml2-devel make openssl-devel
+      git clone
+https://github.com/s3fs-fuse/s3fs-fuse.git
+      cd s3fs-fuse
+      ./autogen.sh
+      ./configure --prefix=/usr --with-openssl
+      make
+      sudo make install
+     which s3fs
+     touch /etc/passwd-s3fs
+     vim /etc/passwd-s3fs
+     sudo chmod 640 /etc/passwd-s3fs
+     mkdir /mys3bucket
+     s3fs notbest -o use_cache=/tmp -o allow_other -o uid=1001 -o mp_umask=002 -o multireq_max=5 /mys3bucket
+     which s3fs
+     /usr/local/bin/s3fs
+     df -Th
+     cd /mys3bucket
+     echo "this is a test file to check s3fs" >> test.txt
+     ls
+For install jenkins
+dnf install java-17-amazon-corretto -y
+    9  java - version
+   10  java -version
+   11  wget -O /etc/yum.repos.d/jenkins.repo \
+https://pkg.jenkins.io/redhat-stable/jenkins.repo
+   12  yum repolist all
+   13  rpm --import
+https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+   14   dnf install jenkins -y
+   15  systemctl enable jenkins
+   16  systemctl start jenkins
+   17  systemctl status jenkins
+   ###########################################################
+tomacat installation
+yum install java
+    9  java --version
+   10  cd /opt
+   11  wget
+https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.93/bin/apache-tomcat-9.0.93.tar.gz
+   12  ls
+   13  tar -xvzf apache-tomcat-9.0.93.tar.gz
+   14  ls
+   15  mv apache-tomcat-9.0.93 tomcat
+   16  ls
+   17  cd tomcat
+   18  ls
+   19  cd bin
+   20  ls
+   21  ./startup.sh
+   22  cd ..
+   23  find / -name context.xml
+   24  vim /opt/tomcat/webapps/host-manager/META-INF/context.xml
+   25  vim /opt/tomcat/webapps/manager/META-INF/context.xml
+   26  cd bin/
+   27  ./shutdown.sh
+   28  ./startup.sh
+   29  cd ..
+   30  cd conf/
+   31  ls
+   32  vim tomcat-users.xml
+   33  cd ..
+   34  cd bin/
+   35  ./shutdown.sh
+   36  ./startup.sh
+   37  cd /opt
+   38  cd /tomcat
+   39  ls -a
+   40  cd tomcat
+   41  cd bin
+####################################################################
+Install redhat
+yum update -y
+yum install httpd -y
+    3  rpmquery httpd
+    4  cd /var/www/html/
+    5  echo "This is my web server running in Aws cloud " > index.html
+    6  ll
+    7  cat index.html
+    8  cd
+    9  systemctl start httpd
+   10  systemctl status httpd
+   11  systemctl enable httpd
+   12  curl
+http://localhost
+   13  ip a s
+   14  curl
+http://172.31.0.139
+   16  yum install vsftpd -y
+   17  yum install cifs-utils -y
+   18  yum install nfs-utils -y
+   19  yum install tree -y
+   20  cd /tmp/
+   21  touch sanjaya.txt{1..100}
+   22  ll
+   23  cd
+   #######################################################
+   adding of disk using volumes in redhat
+    44  clear
+   45  lsblk -fs
+   46  lsblk
+   47  mkfs
+   48  mkfs.ext4 /dev/xvdb
+   49  blkid
+   50  mkdir data
+   51  mkdir daty
+   52  mount /dev/xvdb daty
+   53  df -h
+   54  cd data
+   55  cd ..
+   56  cd daty
+   57  touch train.txt{1..100}
+   58  ll
+   59  cd
+   60  yum install vim -y
+   61  vim /etc/fstab
+   62  mount -a
+   63  df -h
+has context menu
+ 
+vol
+Microsoft Windows [Version 10.0.22631.4037]
+(c) Microsoft Corporation. All rights reserved.
+ 
+C:\Users\10747959>cd Downloads
+ 
+C:\Users\10747959\Downloads>ssh -i "tokyo.pem" ec2-user@ec2-52-195-219-211.ap-northeast-1.compute.amazonaws.com
+The authenticity of host 'ec2-52-195-219-211.ap-northeast-1.compute.amazonaws.com (52.195.219.211)' can't be established.
+ED25519 key fingerprint is SHA256:5hJwplySVW3F4UiLtl5F3BY0P3+0hXhFapZ7Y9jKDfg.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'ec2-52-195-219-211.ap-northeast-1.compute.amazonaws.com' (ED25519) to the list of known hosts.
+   ,     #_
+   ~\_  ####_        Amazon Linux 2023
+  ~~  \_#####\
+  ~~     \###|
+  ~~       \#/ ___   https://aws.amazon.com/linux/amazon-linux-2023
+   ~~       V~' '->
+    ~~~         /
+      ~~._.   _/
+         _/ _/
+       _/m/'
+[ec2-user@ip-172-31-39-11 ~]$ sudo su
+[root@ip-172-31-39-11 ec2-user]# cd
+[root@ip-172-31-39-11 ~]# lsblk
+NAME      MAJ:MIN RM SIZE RO TYPE MOUNTPOINTS
+xvda      202:0    0   8G  0 disk
+├─xvda1   202:1    0   8G  0 part /
+├─xvda127 259:0    0   1M  0 part
+└─xvda128 259:1    0  10M  0 part /boot/efi
+xvdb      202:16   0   5G  0 disk
+[root@ip-172-31-39-11 ~]# mkdir /newvol
+[root@ip-172-31-39-11 ~]# mount /dev/xvdb /newvol
+[root@ip-172-31-39-11 ~]# cd /newvol
+[root@ip-172-31-39-11 newvol]# ll
+total 16
+drwx------. 2 root root 16384 Sep  9 04:53 lost+found
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt1
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt10
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt11
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt12
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt13
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt14
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt15
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt16
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt17
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt18
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt19
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt2
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt20
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt21
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt22
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt23
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt24
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt25
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt26
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt27
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt28
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt29
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt3
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt30
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt31
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt32
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt33
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt34
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt35
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt36
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt37
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt38
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt39
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt4
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt40
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt41
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt42
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt43
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt44
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt45
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt46
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt47
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt48
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt49
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt5
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt50
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt6
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt7
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt8
+-rw-r--r--. 1 root root     0 Sep  9 05:04 newdracula.txt9
+[root@ip-172-31-39-11 newvol]# cd
+[root@ip-172-31-39-11 ~]# lsblk
+NAME      MAJ:MIN RM SIZE RO TYPE MOUNTPOINTS
+xvda      202:0    0   8G  0 disk
+├─xvda1   202:1    0   8G  0 part /
+├─xvda127 259:0    0   1M  0 part
+└─xvda128 259:1    0  10M  0 part /boot/efi
+xvdb      202:16   0   5G  0 disk /newvol
+[root@ip-172-31-39-11 ~]#
+ 
+ 
+rpmquery nfs-utils
+mkdir /lin
+cd /lin
+sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport 172.31.47.6:/ /lin
+cd /lin
+touch t.txt
+ll
+
+rpmquery nfs
+yum install nfs-utils
+mkdir red
+sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport 172.31.47.6:/ red
+ll
+cd red
+ll
+df -h
+
+apt update
+apt install nfs-common
+mkdir ubu
+sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport 172.31.47.6:/ ubu
+cd ubu
+ll
